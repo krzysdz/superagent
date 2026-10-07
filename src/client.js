@@ -431,6 +431,7 @@ function Request(method, url) {
   this.url = url;
   this.header = {}; // preserves header name case
   this._header = {}; // coerces header names to lowercase
+  this._unset = {}; // lowercase headers that were unset; used to suppress some defaults
   this.on('end', () => {
     let error = null;
     let res = null;
