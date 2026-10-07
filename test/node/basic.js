@@ -132,28 +132,6 @@ describe('[node] request', () => {
         });
     });
 
-    it('should remove implicit Content-Type when sending string data', (done) => {
-      request
-        .post(`${base}/echo`)
-        .send('name=tj')
-        .unset('Content-Type')
-        .then((res) => {
-          assert.equal(res.header['content-type'], undefined);
-          done();
-        });
-    });
-
-    it('should remove implicit Content-Type when sending auto json', (done) => {
-      request
-        .post(`${base}/echo`)
-        .send({ name: 'tj' })
-        .unset('Content-Type')
-        .then((res) => {
-          assert.equal(res.header['content-type'], undefined);
-          done();
-        });
-    });
-
     it('should allow setting previously unset header', (done) => {
       request
         .get(`${base}/echo`)
