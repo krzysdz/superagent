@@ -663,7 +663,7 @@ RequestBase.prototype.send = function (data) {
   else if (typeof data === 'bigint') throw new Error("Cannot send value of type BigInt");
   else if (typeof data === 'string') {
     // default to x-www-form-urlencoded
-    if (!type && !hasOwn(this._unset, 'content-type')) this.type('form');
+    if (!type) this.type('form');
     type = this._header['content-type'];
     if (type) type = type.toLowerCase().trim();
     if (type === 'application/x-www-form-urlencoded') {
@@ -680,7 +680,7 @@ RequestBase.prototype.send = function (data) {
   }
 
   // default to json
-  if (!type && !hasOwn(this._unset, 'content-type')) this.type('json');
+  if (!type) this.type('json');
   return this;
 };
 
