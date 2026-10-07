@@ -382,6 +382,7 @@ RequestBase.prototype.set = function (field, value) {
 
   this._header[field.toLowerCase()] = value;
   this.header[field] = value;
+  delete this._unset[field.toLowerCase()];
   return this;
 };
 
@@ -400,6 +401,7 @@ RequestBase.prototype.set = function (field, value) {
 RequestBase.prototype.unset = function (field) {
   delete this._header[field.toLowerCase()];
   delete this.header[field];
+  this._unset[field.toLowerCase()] = true;
   return this;
 };
 

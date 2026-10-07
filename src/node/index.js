@@ -315,6 +315,9 @@ function _initHeaders(request_) {
   request_.header = {
     // preserves header name case
   };
+  request_._unset = {
+    // lowercase headers that were unset; used to suppress some defaults
+  }
 }
 
 /**
@@ -1057,7 +1060,7 @@ Request.prototype.request = function () {
     // set tcp no delay
     req.setNoDelay(true);
 
-    if (options.method !== 'HEAD') {
+    if (options.method !== 'HEAD' && !hasOwn(this._unset, 'accept-encoding')) {
       req.setHeader('Accept-Encoding', 'gzip, deflate');
     }
 
